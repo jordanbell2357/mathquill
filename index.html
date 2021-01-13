@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <link rel="stylesheet" href="mathquill.css"/>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+<script src="mathquill.js"></script>
+<script>
+var MQ = MathQuill.getInterface(2);
+</script>
+<p>Solve <span id="problem">ax^2 + bx + c = 0</span>.</p>
+
+<script>
+  var problemSpan = document.getElementById('problem');
+  MQ.StaticMath(problemSpan);
+</script>
+
+<p><span id="answer">x=</span></p>
+
+<script>
+  var answerSpan = document.getElementById('answer');
+  var answerMathField = MQ.MathField(answerSpan, {
+    handlers: {
+      edit: function() {
+        var enteredMath = answerMathField.latex(); // Get entered math in LaTeX format
+        checkAnswer(enteredMath);
+      }
+    }
+  });
+</script>
+</body>
+</html>
